@@ -56,7 +56,7 @@
       }
     },
     "optionStmt": {
-      "begin": "(option)\\s+(\\w+|\\(\\w+(\\.\\w+)*\\))(\\.\\w+)*\\s*(=)",
+      "begin": "(option)\\s+(\\.?\\w+|\\(\\.?\\w+(\\.\\w+)*\\))(\\.\\w+)*\\s*(=)",
       "beginCaptures": {
         "1": {"name": "keyword.other.proto"},
         "2": {"name": "support.other.proto"},
@@ -97,7 +97,16 @@
         {"include": "#constants"},
         {"include": "#number"},
         {"include": "#string"},
-        {"include": "#subMsgOption"}
+        {"include": "#subMsgOption"},
+        {"include": "#array"}
+      ]
+    },
+    "array": {
+      "begin": "\\[",
+      "end": "\\]",
+      "patterns": [
+        {"include": "#string"},
+        {"include": "#number"}
       ]
     },
     "fieldOptions": {
@@ -112,7 +121,7 @@
       ]
     },
     "optionName": {
-      "match": "(\\w+|\\(\\w+(\\.\\w+)*\\))(\\.\\w+)*",
+      "match": "(\\.?\\w+|\\(\\w+(\\.\\w+)*\\))(\\.\\w+)*",
       "captures": {
         "1": {"name": "support.other.proto"},
         "2": {"name": "support.other.proto"},
